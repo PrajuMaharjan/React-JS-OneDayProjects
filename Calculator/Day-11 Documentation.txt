@@ -1,0 +1,86 @@
+On Day 11, I built a Calculator App using React.
+The design was inspired by my watch’s calculator, and I used a YouTube tutorial as a starting point.
+
+Initially, I wrote the entire application in a single file, but later refactored it into multiple components to improve structure, readability, and reusability.
+
+⚙️ Features
+➕ Perform basic arithmetic operations (+, −, ×, ÷)
+🔢 Display live input and results
+⌫ Delete last character
+🧹 Clear entire input
+⚡ Instant calculation on "="
+🧩 Component Structure
+1. App.jsx
+Main component managing state and logic
+Stores user input using useState
+Handles all calculator operations
+
+Example:
+
+const [input, setInput] = useState("");
+2. Display.jsx
+Displays current input/output
+Shows "0" when input is empty
+Keeps UI clean and separated from logic
+
+👉 Example:
+
+3. ButtonGrid.jsx
+Renders all calculator buttons
+Uses a grid layout
+Passes actions (click, delete, clear, equals) as props
+
+👉 Example:
+
+4. Button.jsx
+Reusable button component
+Handles styling and click events
+
+👉 Example:
+
+🔁 Core Functions (App Logic)
+
+From App.jsx:
+
+🔹 handleClick(value)
+Adds numbers/operators to input
+setInput((prev) => prev + value);
+🔹 handleDelete()
+Removes last character
+setInput((prev) => prev.slice(0, -1));
+🔹 handleClear()
+Clears entire input
+setInput("");
+🔹 handleEquals()
+Calculates result using eval()
+setInput(eval(input).toString());
+Uses try-catch to handle errors
+⚠️ Important Learning
+🚫 Why eval() is risky
+Can execute malicious code
+Causes security vulnerabilities
+Not recommended for production apps
+
+👉 Learned that better alternatives exist (like expression parsers)
+
+🎨 Styling
+Built using CSS Grid for layout
+Buttons styled with hover effects
+Dark theme inspired by real calculator
+
+👉 Example:
+
+🧠 Key Concepts Learned
+Component-based architecture
+State management using useState
+Event handling in React
+Code refactoring (single file → multiple components)
+Separation of logic and UI
+🚀 Improvements for Future
+Replace eval() with a safer parser
+Add keyboard input support
+Improve UI/UX with animations
+Add calculation history
+💡 Summary
+
+This project helped me move from basic React concepts to building a functional application, while also understanding the importance of code structure and best practices.

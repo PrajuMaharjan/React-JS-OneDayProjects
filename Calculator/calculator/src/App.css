@@ -1,0 +1,132 @@
+body{
+    background-color: gray;
+    margin: 0;
+    font-family: "Segoe UI","sans-serif";
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.calculator-container{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:15px;
+}
+
+.calculator{
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    width: 320px;
+}
+
+.display{
+    background-color:black;
+    color:white;
+    font-size: 2rem;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: right;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.buttons{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:2px;
+}
+
+.button-number{
+    background-color:rgba(99,103,139,0.6);
+    color:white;
+    font-size: 1.2rem;
+    padding:18px;
+    border:none;
+    border-radius: 20px;
+    cursor:pointer;
+    transition:background-color 0.2s ease;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.button-number:hover{
+    background-color: white;
+    color:black;
+}
+
+.button-operator{
+    background-color: aqua;
+    border-radius: 20px;
+    cursor:pointer;
+    color:white;
+    font-weight: bold;
+    font-size: 24px;
+    
+}
+
+.button-operator:hover{
+    background-color: white;
+    color:black;
+}
+
+.button-zero{
+    grid-column:span 2;
+    background-color:rgba(99,103,139,0.6);
+    color:white;
+    font-size: 1.2rem;
+    padding:18px;
+    border:none;
+    border-radius: 20px;
+    cursor:pointer;
+    transition:background-color 0.2s ease;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.button-zero:hover{
+    background-color: white;
+    color:black;
+}
+
+.button-delete{
+    grid-column:span 2;
+    background-color:rgba(99,103,139,0.6);
+    color:white;
+    font-size: 1.2rem;
+    padding:18px;
+    border:none;
+    border-radius: 20px;
+    cursor:pointer;
+    transition:background-color 0.2s ease;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.button-delete:hover{
+    background-color: white;
+    color:black;
+}
+
+.button-clear{
+    background-color:red;
+    color:white;
+    font-size: 1.2rem;
+    padding:18px;
+    border:none;
+    border-radius: 20px;
+    cursor:pointer;
+    transition:background-color 0.2s ease;
+    font-weight: bold;
+    font-size: 24px;
+    
+}
+
+.button-clear:hover{
+    background-color: white;
+    color:black;
+}
