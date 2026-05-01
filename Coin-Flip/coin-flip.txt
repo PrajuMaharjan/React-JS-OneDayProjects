@@ -1,0 +1,63 @@
+Overview
+
+On Day 12, I built a Coin Flip App using React.
+
+The goal of this project was to simulate a real coin flip using logic and UI updates. Instead of using complex animations, I implemented the flip using rotation logic, where the coin rotates a specific number of degrees depending on the result.
+
+⚙️ Features
+🪙 Flip a coin (Heads / Tails)
+🔄 Coin rotates based on result
+📊 Display current result
+🕘 Show history of previous flips
+🧩 Component Structure
+1. App
+Main component
+Manages state and logic
+Controls flip result and history
+2. Coin
+Displays the coin
+Handles rotation based on result
+Updates UI depending on Heads or Tails
+3. FlipButton
+Button to trigger the coin flip
+Calls flip logic function
+4. FlipResult
+Displays the latest result (Heads or Tails)
+5. FlipHistory
+Shows a list of previous flip results
+Keeps track of recent outcomes
+🔁 Core Logic
+🎯 Coin Flip Logic
+A random result is generated:
+Math.random() < 0.5 ? "Heads" : "Tails";
+🔄 Rotation Logic
+The coin rotates based on the result:
+Heads → 0° rotation
+Tails → 180° rotation
+Rotation ensures the correct side of the coin is shown.
+🧠 Key Concepts Learned
+🔹 Component-Based Design
+Broke the app into multiple reusable components
+🔹 State Management
+Used React state to track:
+Current result
+Rotation value
+Flip history
+🔹 Logic + UI Integration
+Connected logic (random result) with UI (rotation of coin)
+🔹 Conditional Rendering
+Displayed different outputs based on state
+🎨 UI Behavior
+Coin visually changes using rotation
+Result updates instantly after flip
+History updates dynamically
+🚀 Improvements for Future
+Add smooth transition for rotation
+Add sound effects for coin flip
+Limit history length (e.g., last 5 flips)
+Improve UI design
+💡 Summary
+
+This project helped me understand how to combine logic, state, and UI updates to simulate real-world behavior in a React app.
+
+It also reinforced the importance of structuring applications using multiple components.
