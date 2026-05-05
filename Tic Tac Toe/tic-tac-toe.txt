@@ -1,0 +1,190 @@
+================================================================
+                    TIC TAC TOE
+              Technical Documentation
+================================================================
+
+----------------------------------------------------------------
+1. OVERVIEW
+----------------------------------------------------------------
+This is a browser-based Tic Tac Toe game built with React JS.
+It supports two game modes: Player vs Player and Player vs
+Computer. The game is component-driven, with state managed
+centrally in App.jsx and passed down via props.
+
+----------------------------------------------------------------
+2. HOW TO PLAY
+----------------------------------------------------------------
+1. Select a game mode using the 'Click To Change Mode' button.
+2. Player 1 always goes first and plays as X.
+3. Click any empty cell on the board to place your symbol.
+4. Players alternate turns until a winner is found or the
+   board is full.
+5. Click 'Restart' to reset the board at any time.
+
+----------------------------------------------------------------
+3. GAME MODES
+----------------------------------------------------------------
+Mode                  | Player 1      | Player 2
+----------------------|---------------|---------------
+Player VS Player      | Human (X)     | Human (O)
+Player VS Computer    | Human (X)     | Computer (O)
+
+----------------------------------------------------------------
+4. WIN CONDITIONS
+----------------------------------------------------------------
+A player wins by filling any of the following 8 combinations:
+
+Type                                  | Indices (0-based)
+--------------------------------------|------------------
+Row 1                                 | 0, 1, 2
+Row 2                                 | 3, 4, 5
+Row 3                                 | 6, 7, 8
+Column 1                              | 0, 3, 6
+Column 2                              | 1, 4, 7
+Column 3                              | 2, 5, 8
+Diagonal (top-left to bottom-right)   | 0, 4, 8
+Diagonal (top-right to bottom-left)   | 2, 4, 6
+
+If all 9 cells are filled with no winner, the game is a draw.
+
+Board index layout:
+  0 | 1 | 2
+  ---------
+  3 | 4 | 5
+  ---------
+  6 | 7 | 8
+
+----------------------------------------------------------------
+5. COMPONENT STRUCTURE
+----------------------------------------------------------------
+Component      | File                | Responsibility
+---------------|---------------------|---------------------------
+App            | App.jsx             | Root component. Manages all
+               |                     | game state and logic.
+Header         | Header.jsx          | Displays the game title.
+ModeSelector   | ModeSelector.jsx    | Button to toggle game mode.
+CurrentTurn    | CurrentTurn.jsx     | Shows whose turn it is and
+               |                     | their symbol.
+BoxGrid        | BoxGrid.jsx         | Renders the 3x3 board by
+               |                     | mapping over boardValues.
+Box            | Box.jsx             | A single clickable cell.
+WinnerText     | WinnerText.jsx      | Displays winner or draw msg.
+RestartButton  | RestartButton.jsx   | Resets the game on click.
+
+Component Tree:
+  App
+  ├── Header
+  ├── ModeSelector
+  ├── CurrentTurn
+  ├── BoxGrid
+  │   └── Box (x9)
+  ├── WinnerText
+  └── RestartButton
+
+----------------------------------------------------------------
+6. STATE MANAGEMENT
+----------------------------------------------------------------
+All state lives in App.jsx using React's useState hook:
+
+Variable        | Type     | Initial Value        | Purpose
+----------------|----------|----------------------|------------------
+mode            | string   | "Player VS Computer" | Current game mode
+currentPlayer   | string   | "Player 1"           | Active player name
+currentSymbol   | string   | "X"                  | Active player symbol
+winner          | string   | ""                   | Winner name or
+                |          |                      | "Noone" for draw
+boardValues     | array    | ["","","","","",     | Cell values (X, O,
+                |          |  "","","",""]         | or empty string)
+gameActive      | boolean  | true                 | Is game in progress
+
+----------------------------------------------------------------
+7. CORE FUNCTIONS
+----------------------------------------------------------------
+
+handleGamePlay(box_number)
+  Called when a player clicks a cell. Guards against clicking
+  a filled cell or clicking when the game is over. Creates a
+  copy of the board, places the current symbol, updates state,
+  then calls checkWinner. If no winner, calls changeTurnAndSymbol.
+
+checkWinner(newBoard)
+  Takes the updated board as a parameter to avoid stale React
+  state. Loops through all 8 win conditions. Returns true and
+  sets the winner if a match is found. Also detects a draw if
+  no empty cells remain. Checks win before draw to avoid
+  overwriting a real winner.
+
+changeTurnAndSymbol()
+  Switches the active player and symbol. In Player VS Computer
+  mode, alternates between "Player 1" and "Computer". In Player
+  VS Player mode, alternates between "Player 1" and "Player 2".
+
+handleRestart()
+  Resets all game state: clears the board, sets gameActive to
+  true, clears the winner, and resets the turn to Player 1
+  with symbol X.
+
+changeMode()
+  Toggles between the two game modes and immediately calls
+  handleRestart to reset the board when the mode changes.
+
+----------------------------------------------------------------
+8. PROPS REFERENCE
+----------------------------------------------------------------
+
+Header
+  headerText (string) - Text to display as the page title
+
+ModeSelector
+  onClick     (function) - Handler to toggle game mode
+  labelText   (string)   - Label shown before the mode name
+  currentMode (string)   - The currently active mode
+  buttonText  (string)   - Text displayed on the button
+
+CurrentTurn
+  playerName (string) - Name of the current player
+  symbol     (string) - Symbol of the current player (X or O)
+
+BoxGrid
+  boardValues (array)    - Array of 9 cell values
+  onBoxClick  (function) - Handler called with box index on click
+
+Box
+  box_number (number)   - Index of this cell (0-8)
+  value      (string)   - Current value of this cell
+  onBoxClick (function) - Click handler passed from BoxGrid
+
+WinnerText
+  gameActive  (boolean) - Hides winner text during active game
+  winnerName  (string)  - Name of winner, or "Noone" for a draw
+
+RestartButton
+  onClick (function) - Handler to restart the game
+
+----------------------------------------------------------------
+9. KNOWN LIMITATIONS
+----------------------------------------------------------------
+- The Computer player does not use AI. In Player VS Computer
+  mode, the human must play both sides manually.
+- No score tracking across multiple rounds.
+- No animations on win or draw.
+- Changing the mode resets the board immediately.
+
+----------------------------------------------------------------
+10. FILE STRUCTURE
+----------------------------------------------------------------
+File                | Purpose
+--------------------|------------------------------------------
+App.jsx             | Root component with all game state/logic
+App.css             | Global styles for all components
+Header.jsx          | Title display component
+ModeSelector.jsx    | Game mode toggle
+CurrentTurn.jsx     | Active player indicator
+BoxGrid.jsx         | Board grid renderer
+Box.jsx             | Individual board cell
+WinnerText.jsx      | End game message
+RestartButton.jsx   | Game reset button
+
+================================================================
+                    END OF DOCUMENTATION
+================================================================
