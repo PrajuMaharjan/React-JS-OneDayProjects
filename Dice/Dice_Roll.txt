@@ -1,0 +1,57 @@
+ Day 10 – Dice App (React)
+📌 Overview
+
+Today, I built a simple Dice App using React.
+The goal was to take an existing idea (a dice made using JavaScript and CSS) and recreate it using React concepts.
+
+This helped me practice:
+
+Component-based structure
+State management
+Event handling
+Breaking UI into reusable parts
+⚙️ Features
+🎲 Roll a dice on button click
+🔢 Display the result of the latest roll
+⚡ Dynamic UI update using React state
+🧩 Components Used
+1. App.js
+Main/root component
+Manages the state of the dice value
+Contains the logic for rolling the dice
+2. RollResult.jsx
+Displays the result of the latest dice roll
+Receives data via props
+Keeps UI logic separate from main logic
+🔁 Logic Flow
+User clicks the Roll Dice button
+A function generates a random number (1–6)
+The state is updated with the new value
+React re-renders the UI
+RollResult.jsx displays the updated result
+🧠 Key Concepts Learned
+🔹 Converting JS Logic to React
+Instead of manipulating the DOM directly, React uses state to update UI
+🔹 useState Hook
+Used to store and update the dice value
+Triggers re-render when updated
+🔹 Component Separation
+Logic handled in App.js
+Display handled in RollResult.jsx
+🔹 Props
+Used to pass the dice result to RollResult.jsx
+💡 Example Code Snippet
+const [roll, setRoll] = useState(1);
+
+const handleRoll = () => {
+  const randomNumber = Math.floor(Math.random() * 6) + 1;
+  setRoll(randomNumber);
+};
+🚀 What I Learned
+How to convert a simple JS project into Reactw
+Importance of separating logic and UI
+How React handles dynamic updates efficiently
+📈 Next Steps
+Add animations to dice roll
+Improve UI design
+Add history of previous rolls
